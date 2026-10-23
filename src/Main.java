@@ -1,8 +1,9 @@
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-
+        Scanner scanner = new Scanner(System.in);
         // Ejemplo: arbol del enunciado
         //            A
         //          /   \
@@ -11,6 +12,7 @@ public class Main {
         //       D   E F   G
         //      / \
         //     H   I
+
         TreeNode a = new TreeNode("A");
         BinaryTree tree = new BinaryTree(a);
 

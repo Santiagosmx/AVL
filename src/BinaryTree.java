@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class BinaryTree {
 
@@ -11,37 +12,28 @@ public class BinaryTree {
         this.root = root;
     }
 
-    private int compare(Object a, Object b) {
-        Integer num1 = (Integer) a;
-        Integer num2 = (Integer) b;
-
-        return num1.compareTo(num2);
-    }
 
     /*
     IMPORTANTE: respete EXACTAMENTE los nombres y firmas de los metodos que se
     piden abajo; la revision automatica los busca por nombre. Puede agregar
     todos los metodos auxiliares (privados) que necesite.
     */
-    public void insertRoot(Object data){
+    public void insertRoot(int data){
         if (root == null){
             TreeNode root = new TreeNode(data);
         }else {
             System.out.println("El árbol ya tiene una raíz");
         }
     }
-    public TreeNode search(Object data){
+    public TreeNode search(int data){
 
         if(root == null){
             return null;
         }
-
-        int resultado = compare(root.data, data);
-
-        if (resultado == 0){
+        if (root.data == data){
             return root;
         }
-        if (resultado > 0){
+        if (data < root.data){
             root = root.left;
             return search(data);
         }
@@ -49,20 +41,42 @@ public class BinaryTree {
         return search(data);
 
     }
-    public boolean insertLeft(Object parent, Object data){
+    public boolean insertLeft(int parent, int data){
         TreeNode parentNode = search(parent);
         if (parentNode == null){
             return false;
         }
-        int resultado = compare(parent, data);
-        if (resultado == 0){
+        if (parentNode.data == data){
             return false;
-        }else if(resultado > 0 && parentNode.left != null){
+        }else if(parentNode.data > data && parentNode.left != null){
             TreeNode node = new TreeNode(data);
             parentNode.left = node;
             return true;
         }
         return false;
+    }
+    public boolean insertRight(int parent, int data){
+        TreeNode parentNode = search(parent);
+        if (parentNode == null){
+            return false;
+        }
+        if (parentNode.data == data){
+            return false;
+        }else if(parentNode.data < data && parentNode.right != null){
+            TreeNode node = new TreeNode(data);
+            parentNode.right = node;
+            return true;
+        }
+        return false;
+    }
+    public void buildTree(Scanner scanner){
+    if (root == null) return;
+        System.out.print("Raíz: ");
+        int data = scanner.nextInt();
+        insertRoot(data);
+        System.out.print("Hijo izquierdo: ");
+        int dataIzq = scanner.nextInt();
+        insertLeft(root.data, dataIzq);
     }
 
     /*

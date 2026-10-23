@@ -1,11 +1,11 @@
 
 public class TreeNode {
 
-    Object data;
+    int data;
     TreeNode left;
     TreeNode right;
 
-    public TreeNode(Object data) {
+    public TreeNode(int data) {
         this.data = data;
         this.left = null;
         this.right = null;
